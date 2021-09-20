@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+ <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+
+<body>
+<head>
+	<meta charset="UTF-8">
+	<title>rajsons pharma</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+   <h3>rajsons pharma</h3>
+    <input type="text" class="live-search-box" placeholder="search here">
+    <ul class="live-search-list">
+      <li><a href="image/new4.jpg">vicky</a></li>
+      <li><a href="image/new4.jpg">dinesh</a></li>
+      <li><a href="image/new4.jpg">praveen</a></li>
+      <li><a href="image/new4.jpg">balaji</a></li>
+      <li><a href="image/new4.jpg">bonda</a></li>
+      <li><a href="image/new4.jpg">nandha</a></li>
+      <li><a href="image/new4.jpg">suri</a></li>
+      <li><a href="image/new4.jpg">vivek</a></li>
+      <li><a href="image/new4.jpg">peba</a></li>
+       <li>vicky1</li>
+      <li>dinesh2</li>
+      <li>praveen3</li>
+      <li>balaji4</li>
+      <li>bonda5</li>
+      <li>nandha6</li>
+      <li>suri7</li>
+      <li>vivek8</li>
+      <li>peba9</li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+    
+    
+    
+  </div>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src = "js/main.js"></script>
+</body>
+<script>
+jQuery(document).ready(($) => {
+  const ENTER = 13;
+
+  $('.live-search-list li').each(function(){
+    $(this).attr('data-search-term', $(this).text().toLowerCase());
+  });
+
+  $('.live-search-box').on('keyup', function(){
+    const searchTerm = $(this).val().toLowerCase();
+    $('.live-search-list li').each(function(){
+      ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1)
+        ? $(this).show()
+        : $(this).hide();      
+    });
+  });
+
+  $('input[class=live-search-box]').keydown(function(e){
+    if(e.keyCode == ENTER){
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const toAdd = $('input[class=live-search-box]').val();
+      if (toAdd) {
+        $('<li/>' , {
+          'text': toAdd,      
+          'data-search-term':  toAdd.toLowerCase(),
+        }).appendTo($('ul'));
+        $('input[class=live-search-box]').val('');
+        console.log('User has entered '+toAdd);        
+      }    
+    }
+  });
+
+  $(document).on('dblclick', 'li', function(){
+    $(this).fadeOut('slow',function(){
+      $(this).remove();
+    });
+  });
+
+});
+</script>
+</body>
+</html>
